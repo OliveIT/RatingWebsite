@@ -1,3 +1,32 @@
 body {
-  font-size: 16px;
+    font-size: 16px;
+    background: url('/public/assets/background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    .body-overlay {
+        position: fixed;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.6);
+    }
+}
+
+.white {
+    color: #fff;
+}
+
+.main-row {
+    .col-sm {
+        .list-container {
+            overflow-y: auto;
+            max-height: 600px;
+        }
+        .add-town-box {
+            background: #fff;
+            border-radius: .25rem;
+            padding: .75rem 1.25rem;
+        }
+    }
 }
