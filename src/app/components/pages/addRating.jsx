@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import StarRating from 'react-star-rating'
+import StarRatings from 'react-star-ratings';
 
 import HeaderComponent from '../header';
 import States from '../../data/states.jsx';
@@ -12,8 +12,11 @@ class AddRating extends Component {
       super(props);
       this.state = {
         ratingTypes: ["SCHOOLS", "PRPOPERTY TAXES", "NEIGHBORGHOOD", "TOWN CLERK'S HELP"],
+        ratingColors: ["red", "red", "red", "red"], //"orange", "blue", "green"],
+        ratingValues: [0,0,0,0],
+
         averageList: [],
-        ratings: []
+        ratings: [],
       };
       this.ratingRef = [];
       this.firebaseCallback = null;
@@ -91,6 +94,14 @@ class AddRating extends Component {
     this.context.router.push("/");
   }
 
+  onChangeRating(ratingValue, index) {
+      var ratingValues = this.state.ratingValues;
+      ratingValues [index] = ratingValue;
+      this.setState({
+          ratingValues: ratingValues
+      })
+  }
+
   render() {
     if (!this.props.curTown
         || typeof this.props.curTown != "object")
@@ -107,7 +118,16 @@ class AddRating extends Component {
                     <div className="form-group row" key={index}>
                         <label className="col-sm text-center">{value}</label>
                         <div className="col-sm text-center">
-                            <StarRating name="react-star-rating" totalStars={5} size={20} className="form-control col-sm" ref={ref => this.ratingRef [index] = ref}/>
+                            <StarRatings starRatedColor={this.state.ratingColors [index]}
+                                        starHoverColor={this.state.ratingColors [index]}
+                                        numberOfStars={5}
+                                        rating={this.state.ratingValues [index]}
+                                        starDimension="30px" 
+                                        className="form-control col-sm"
+                                        changeRating={value => this.onChangeRating(value, index)}
+                                        ref={ref => this.ratingRef [index] = ref}
+                                        isSelectable={true}
+                                        name={"rating" + index}/>
                         </div>
                         <label className="col-sm text-center">{this.state.averageList [index]} / 100</label>
                     </div>
@@ -131,15 +151,19 @@ class AddRating extends Component {
                 </div>
                 <hr/>
 
-                {this.state.ratings.map(value => {
+                {this.state.ratings.map((value, index) => {
                     var averStar = 0;
                     value.rating.map(star => averStar += star);
                     averStar /= this.state.ratingTypes.length;
 
-                    return (<div className="form-group row">
+                    return (<div className="form-group row" key={index}>
                         <label className="col-sm-3 font-weight-bold">{value.name}</label>
                         <div className="col-sm-3">
-                            <StarRating name="react-star-rating" totalStars={5} size={20} rating={averStar} className="form-control col-sm"/>
+                            <StarRatings
+                                numberOfStars={5} 
+                                starDimension="30px" 
+                                rating={averStar}
+                                starRatedColor="orange"/>
                         </div>
                         <label className="col-sm-3 font-weight-light">{value.created_at}</label>
                         <p className="col-sm-12">{value.comment}</p>
