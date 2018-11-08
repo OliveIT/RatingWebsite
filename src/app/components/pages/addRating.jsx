@@ -106,7 +106,9 @@ class AddRating extends Component {
                 {this.state.ratingTypes.map((value, index) =>
                     <div className="form-group row" key={index}>
                         <label className="col-sm text-center">{value}</label>
-                        <StarRating name="react-star-rating" totalStars={5} size={20} className="form-control col-sm" ref={ref => this.ratingRef [index] = ref}/>
+                        <div className="col-sm text-center">
+                            <StarRating name="react-star-rating" totalStars={5} size={20} className="form-control col-sm" ref={ref => this.ratingRef [index] = ref}/>
+                        </div>
                         <label className="col-sm text-center">{this.state.averageList [index]} / 100</label>
                     </div>
                 )}
@@ -134,11 +136,13 @@ class AddRating extends Component {
                     value.rating.map(star => averStar += star);
                     averStar /= this.state.ratingTypes.length;
 
-                    return (<div className="form-group rating-item">
-                        <label className="form-label font-weight-bold mr-5">{value.name}</label>
-                        <StarRating name="react-star-rating" totalStars={5} size={20} rating={averStar} className="form-control col-sm"/>
-                        <label className="form-label font-weight-light ml-5">{value.created_at}</label>
-                        <p>{value.comment}</p>
+                    return (<div className="form-group row">
+                        <label className="col-sm-3 font-weight-bold">{value.name}</label>
+                        <div className="col-sm-3">
+                            <StarRating name="react-star-rating" totalStars={5} size={20} rating={averStar} className="form-control col-sm"/>
+                        </div>
+                        <label className="col-sm-3 font-weight-light">{value.created_at}</label>
+                        <p className="col-sm-12">{value.comment}</p>
                     </div>);
                 })}
             </div>

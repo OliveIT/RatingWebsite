@@ -1,8 +1,6 @@
 body {
     font-size: 16px;
-    background: url('/public/assets/background.png');
-    background-repeat: no-repeat;
-    background-size: cover;
+    .body-background,
     .body-overlay {
         position: fixed;
         left: 0;
@@ -11,8 +9,13 @@ body {
         bottom: 0;
         background: rgba(0, 0, 0, 0.6);
     }
+    .body-background {
+        background: url('/public/assets/background.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
     .header-text {
-        font-size: 100px;
+        font-size: 3em;
         font-family: 'Intro', sans-serif;
         font-weight: 800;
         text-transform: uppercase;
@@ -21,9 +24,13 @@ body {
         -webkit-text-stroke: 4px transparent;
         color: #b93e45;
     }
-    .home-page .header-text {
+    .header-text {
         margin-top: 1em;
         margin-bottom: 1em;
+    }
+    .home-page .header-text {
+        margin-top: 2.5em;
+        margin-bottom: 2.5em;
     }
 
     .rating-item {

@@ -113,10 +113,10 @@ class HomeComponent extends Component {
     render() {
         return (
         <HeaderComponent className="home-page">
-            <div className="col-sm">
+            <div className="col-sm-12 col-md-6 mt-3 mb-3">
                 <Dropdown options={this.state.stateOptions} value={this.state.curState} onChange={(value) => this.onSelectState(value)} placeholder="SELECT STATE" />
             </div>
-            <div className="col-sm">
+            <div className="col-sm-12 col-md-6 mt-3 mb-3">
                 <Dropdown options={this.getTownOptions()} onChange={(value) => this.onSelectTown(value)} placeholder="SELECT TOWN" />
             </div>
         </HeaderComponent>
