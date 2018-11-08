@@ -58,15 +58,18 @@ class AddRating extends Component {
         count ++;
     })
 
+    var ratingValues = [];
     if (count) {
-        averageList.map((value, index) => 
-            averageList [index] = Math.round(value * 20 / count)
-        )
+        averageList.map((value, index) => {
+            averageList [index] = Math.round(value * 20 / count);
+            ratingValues.push(value / count);
+        })
     }
 
     this.setState({
         averageList: averageList,
-        ratings: ratings
+        ratings: ratings,
+        ratingValues: ratingValues
     })
   }
 
