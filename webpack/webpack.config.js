@@ -9,7 +9,7 @@ module.exports = (options) => {
   const webpackConfig = {
     devtool: options.devtool,
     entry: [
-      `webpack-dev-server/client?http://localhost:${+options.port}`,
+      `webpack-dev-server/client?http://178.238.236.133:${+options.port}`,
       'webpack/hot/dev-server',
       Path.join(__dirname, '../src/app/index'),
     ],
