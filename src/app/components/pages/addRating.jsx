@@ -12,7 +12,7 @@ class AddRating extends Component {
       super(props);
       this.state = {
         ratingTypes: ["SCHOOLS", "PRPOPERTY TAXES", "NEIGHBORGHOOD", "TOWN CLERK'S HELP"],
-        ratingColors: ["red", "red", "red", "red"], //"orange", "blue", "green"],
+        ratingColors: ["orange", "orange", "orange", "orange"], //"orange", "blue", "green"],
         ratingValues: [0,0,0,0],
 
         averageList: [],
